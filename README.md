@@ -106,4 +106,124 @@ environmental-danger-prediction/
 2. **Scene Analysis:** Gemini Vision analyzes the visual input to identify potential environmental hazards.
 3. **Risk Evaluation:** The risk assessment agent evaluates the analysis and determines the associated risk level.
 4. **Pipeline Processing:** LangGraph coordinates the processing workflow.
-5. **Incident Storage
+5. **Incident Storage:** The backend processes the analysis results and stores relevant incident information in the MySQL database.
+6. **Dashboard Visualization:** The frontend displays monitoring results, incident records, risk distributions, and dashboard statistics.
+
+## Backend API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Backend root endpoint |
+| GET | `/health` | Health check |
+| POST | `/api/analyze/image` | Analyze an uploaded image |
+| POST | `/api/analyze/frame` | Analyze a live camera frame |
+| GET | `/api/incidents` | Retrieve incident records |
+| GET | `/api/incidents/{incident_id}` | Retrieve a specific incident |
+| GET | `/api/dashboard/stats` | Retrieve dashboard statistics |
+| PATCH | `/api/incidents/{incident_id}/status` | Update incident status |
+
+## Installation and Setup
+
+### Prerequisites
+
+- Python 3.11
+- Node.js and npm
+- MySQL 8.0
+- Google Gemini API key
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/pradnya641/environmental-danger-prediction.git
+cd environmental-danger-prediction
+```
+
+### 2. Configure Environment Variables
+
+Create a `.env` file in the project root:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_NAME=environmental_danger_db
+```
+
+Never commit your `.env` file or expose API keys and database credentials.
+
+### 3. Configure MySQL
+
+Create the database:
+
+```sql
+CREATE DATABASE environmental_danger_db;
+```
+
+Ensure your MySQL credentials match the `.env` configuration.
+
+### 4. Start the Backend
+
+Create a Python virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it in Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install the required Python dependencies and start the backend:
+
+```bash
+python -m uvicorn app:app --reload --host 127.0.0.1 --port 8000
+```
+
+Backend URL: `http://127.0.0.1:8000`
+
+API documentation: `http://127.0.0.1:8000/docs`
+
+### 5. Start the Frontend
+
+Open a separate terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend URL: `http://localhost:5173`
+
+Keep both backend and frontend servers running.
+
+## Future Scope
+
+- Improve object-level hazard localization and bounding-box accuracy.
+- Enhance temporal consistency and duplicate incident reduction.
+- Improve continuous live monitoring and detection reliability.
+- Introduce advanced analytics and historical incident trends.
+- Explore integration with additional environmental sensors.
+
+## Project Status
+
+The system currently includes image analysis, live webcam frame analysis, AI-based risk assessment, incident persistence, and a web-based monitoring dashboard.
+
+Further improvements to hazard localization, temporal consistency, and monitoring reliability are ongoing.
+
+## Author
+
+**Pradnya J Purohit**
+
+GitHub: [@pradnya641](https://github.com/pradnya641)
+
+Project Repository: [Environmental Danger Prediction System](https://github.com/pradnya641/environmental-danger-prediction)
+
+---
+
+*Built using Python, React, Gemini Vision, LangGraph, FastAPI, and MySQL.*
