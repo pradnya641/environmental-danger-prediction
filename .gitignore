@@ -1,0 +1,66 @@
+
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Node dependencies and build output
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Python packaging
+build/
+*.egg-info/
+
+# Local database and backups
+*.sql
+*.sqlite3
+*.db
+
+# Large model weights
+*.pt
+*.pth
+*.onnx
+
+# Local generated outputs
+outputs/*
+!outputs/.gitkeep
+# Local test data and personal files
+data/
+test_image.jpg
+
+# Local backup copies
+app_backup*.py
+app_pre_database_backup.py
+# Local test data and personal files
+data/
+test_image.jpg
+
+# Local backup copies
+app_backup*.py
+app_pre_database_backup.py
+
+# Local model weights
+*.pt
+# All intermediate backup files
+**/*backup*
